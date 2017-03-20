@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<body>
+
+    <header>
+        <% include ../partials/header %>
+    </header>
+
+    <section>
+        <div class="jumbotron">
+            <div class="container">
+                <h1 class="display-3">The Dante API</h1>
+                <p class="lead">A growing database of all things Dante!</p>
+                <hr class="my-4">
+                <p>
+                    Dante's work is something that I have extreme passion for. But by trade I am 
+                    a web developer. The Dante API is a pet project that I am working on to both 
+                    create an easy to use interface for managing content, and for creating a restful
+                    API work for my other web app, "The Ferry Man".
+                </p>
+                <p class="lead">
+                    <a class="btn btn-link btn-lg" href="#" role="button">Project Repo</a>
+                    <a class="btn btn-info btn-lg" href="#" role="button">The Ferry Man</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="enter-panel-wrapper">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card text-center">
+                <div class="card-block">
+                    <h4 class="card-header">Places of Dante</h4>
+                    <p class="card-text">View, add, and edit locations important to Dante in this database</p>
+                    <a data-bind="click: function(data, event) { openPanel('locations', data, event) }" 
+                        class="btn btn-info">Open Panel</a>
+                </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card text-center">
+                <div class="card-block">
+                    <h4 class="card-header">Persons of Dante</h4>
+                    <p class="card-text">View, add, and edit persons important to Dante in this database</p>
+                    <a data-bind="click: function(data, event) { openPanel('persons', data, event) }" 
+                        class="btn btn-info">Open Panel</a>
+                </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card text-center">
+                <div class="card-block">
+                    <h4 class="card-header">Influences of Dante</h4>
+                    <p class="card-text">See and edit notes on how Dante influenced the world and vice versa</p>
+                    <a data-bind="click: function(data, event) { openPanel('influences', data, event) }" 
+                        class="btn btn-info">Open Panel</a>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="panel-window">
+        <div data-bind="if: openedPanel() === 'locations'">
+            <% include ../partials/location/locationspanel %>
+        </div>
+    </section>
+
+
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+    
+</body>
+</html>

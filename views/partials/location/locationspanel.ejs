@@ -1,0 +1,87 @@
+
+      <h5>Locations Panel</h5>
+    <div class="card">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Summary</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Notes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Images</a>
+                </li>
+            </ul>
+        </div>
+
+      <div class="card-block entry-summary">
+        <h4 class="card-title">Instructions</h4>
+        <p class="card-text">
+            To start your search for entires, whether to view or to edit, 
+            just start typing into the search window and we will try to 
+            find a entry that matches what you are looking for. Then click 
+            on the one that you wish to edit. By default, the information of 
+            the first result will populate this window.
+            <br>
+            <br>
+            Use the tabs above to see the different types of information available:
+            textual, images, and other notes.
+            <br>
+            <br>
+            If you are editing, once an entry is selected, open the edit panel by 
+            selecting the 'edit' tab. This form will change based on which type 
+            of information you wish to edit. For example, if you want to upload or 
+            delete an image, make sure to select the 'images' tab in this window to 
+            change which form is presented for editing.
+        </p>
+      </div>
+    </div>
+
+<div class="row find-add-edit-wrapper">
+    <div class="col-sm-6 entry-add">
+        <div class="card">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" 
+                        data-bind="click: function(data, event) { locationsPanel.formWindowChange('add', data, event) }">New</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"
+                        data-bind="click: function(data, event) { locationsPanel.formWindowChange('edit', data, event) }">Edit</a>
+                    </li>
+                </ul>
+            </div>
+
+        <!-- ko if: locationsPanel.formWindowSelected() === 'add' -->
+            <% include ./addlocationform %>
+        <!-- /ko -->
+
+        <!-- ko if: locationsPanel.formWindowSelected() === 'edit' -->
+            <% include ./editlocationform %>
+        <!-- /ko -->
+    </div>
+
+    </div>
+
+    <div class="col-sm-6 entry-add">
+    <div class="card">
+         <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search Entries">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                </li>
+            </ul>
+        </div>
+      <div class="card-block">
+        <h3 class="card-title">Search Results</h3>
+        <small>Type into the search bar and we will try to find what your looking for</small>
+      </div>
+    </div>
+  </div>
+</div>
+
