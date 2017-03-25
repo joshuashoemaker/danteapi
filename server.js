@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 //environment
-mongoose.connect('mongodb://<admin>:<ThereIsOnly1>@ds135700.mlab.com:35700/danteapi');
+mongoose.connect('mongodb://localhost/danteapi');
 app.set('view engine','ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -19,18 +19,24 @@ const port = process.env.PORT || 3000;
 
 //routes
 const addLocation = require('./routes/addLocation');
+const getLocation = require('./routes/getLocation');
 
 app.get('/', (req, res) =>{
     res.render('pages/index');
 });
 
-app.use('/addEntry', addLocation);
+app.use('/addLocation', addLocation);
+app.use('/getLocation', getLocation);
 
-
+mongoose.connection.on('connected', function () {  
+  console.log('Mongoose default connection opened');
+}); 
 
 mongoose.connection.on('error', function (err) {
-  console.log("Connected to remote MongoDB");
+    throw err;
+  console.log("Could not connect to MongoDB");
 });
+
 
 app.listen(port, () =>{
     console.log("Open on port " + port);

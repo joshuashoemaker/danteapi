@@ -1,7 +1,9 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+'use strict'
 
-const locationSchema = new Schema({
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+var locationSchema = new Schema({
   name:  String,
   address: String,
   summary:   String,
@@ -10,14 +12,7 @@ const locationSchema = new Schema({
       body: String, 
       date: Date 
     }
-  ],
-  meta: {
-    dateEntered: { 
-      type: Date, 
-      default: Date.now 
-    }
-  }
+  ]
 });
 
-const Location = mongoose.model('Location', locationSchema);
-module.exports = Location;
+module.exports = mongoose.model('Location', locationSchema);
