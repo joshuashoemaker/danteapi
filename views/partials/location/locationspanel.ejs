@@ -16,24 +16,28 @@
         </div>
 
       <div class="card-block entry-summary">
-        <h4 class="card-title">Instructions</h4>
+        <h4 class="card-title" data-bind="text: locationsPanel.selectedLocation.name">Instructions</h4>
         <p class="card-text">
-            To start your search for entires, whether to view or to edit, 
-            just start typing into the search window and we will try to 
-            find a entry that matches what you are looking for. Then click 
-            on the one that you wish to edit. By default, the information of 
-            the first result will populate this window.
+            <h5 class="text-italics" data-bind="text: locationsPanel.selectedLocation.address"></h5>
             <br>
-            <br>
-            Use the tabs above to see the different types of information available:
-            textual, images, and other notes.
-            <br>
-            <br>
-            If you are editing, once an entry is selected, open the edit panel by 
-            selecting the 'edit' tab. This form will change based on which type 
-            of information you wish to edit. For example, if you want to upload or 
-            delete an image, make sure to select the 'images' tab in this window to 
-            change which form is presented for editing.
+            <span  data-bind="text: locationsPanel.selectedLocation.summary">
+                To start your search for entires, whether to view or to edit, 
+                just start typing into the search window and we will try to 
+                find a entry that matches what you are looking for. Then click 
+                on the one that you wish to edit. By default, the information of 
+                the first result will populate this window.
+                <br>
+                <br>
+                Use the tabs above to see the different types of information available:
+                textual, images, and other notes.
+                <br>
+                <br>
+                If you are editing, once an entry is selected, open the edit panel by 
+                selecting the 'edit' tab. This form will change based on which type 
+                of information you wish to edit. For example, if you want to upload or 
+                delete an image, make sure to select the 'images' tab in this window to 
+                change which form is presented for editing.
+            </span>
         </p>
       </div>
     </div>
@@ -50,6 +54,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#"
                         data-bind="click: function(data, event) { locationsPanel.formWindowChange('edit', data, event) }">Edit</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"
+                        data-bind="click: function(data, event) { locationsPanel.formWindowChange('delete', data, event) }">Delete</a>
                     </li>
                 </ul>
             </div>
@@ -70,9 +78,9 @@
          <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search Entries">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <form class="form-inline" data-bind="submit: preventForm">
+                    <input data-bind="value: locationsPanel.searchValue , valueUpdate: 'keyup', event: { keyup: locationsPanel.searchQueryEntered }" 
+                    class="form-control mr-sm-2" type="text" placeholder="Search Entries">
                 </form>
                 </li>
             </ul>
@@ -80,6 +88,11 @@
       <div class="card-block">
         <h3 class="card-title">Search Results</h3>
         <small>Type into the search bar and we will try to find what your looking for</small>
+
+        <div class="search-results" data-bind="foreach: locationsPanel.filteredLocations">
+            <% include ./locationSearchResults.ejs %>
+        </div>
+
       </div>
     </div>
   </div>

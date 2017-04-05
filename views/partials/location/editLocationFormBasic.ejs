@@ -1,0 +1,27 @@
+<form class="form-group edit-location-basic" data-bind="with: locationsPanel, submit: locationsPanel.submitUpdateLocation">
+
+    <input type="hidden" data-bind="value: selectedLocation.name">
+
+    <label for="edit-entry-name">Entry Name</label>
+    <input name="name" data-bind="value: selectedLocation.name" type="text" class="form-control" id="edit-entry-name" aria-describedby="nameHelp" required>
+    <small id="nameHelp" class="form-text text-muted">
+        If you edit the name, this location will have to be found later by the new name.
+    </small>
+    <br>
+
+    <label for="edit-entry-address">Entry Address</label>
+    <input name="address" data-bind="value: selectedLocation.address" type="text" class="form-control" id="edit-entry-address" aria-describedby="addressHelp">
+    <small id="addressHelp" class="form-text text-muted">
+        You may enter a valid address or longitude and lattitude coordinates as '[long, latt]'
+    </small>
+    <br>
+
+    <label for="edit-entry-summary">Entry Summary</label>
+    <textarea name="summary" class="form-control" id="edit-entry-summary" rows="6" data-bind="value: selectedLocation.summary"></textarea>
+    <br>
+
+    <button class="form-control btn btn-success" aria-describedby="submitHelp">Sumbit Changes</button>
+    <small id="submitHelp" class="form-text text-muted">
+        If you leave any text feilds blank, the entry will then be replaced by empty data.
+    </small>
+</form>

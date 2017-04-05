@@ -20,6 +20,7 @@ const port = process.env.PORT || 3000;
 //routes
 const addLocation = require('./routes/addLocation');
 const getLocation = require('./routes/getLocation');
+const updateLocation = require('./routes/updateLocation');
 
 app.get('/', (req, res) =>{
     res.render('pages/index');
@@ -27,6 +28,7 @@ app.get('/', (req, res) =>{
 
 app.use('/addLocation', addLocation);
 app.use('/getLocation', getLocation);
+app.use('/updateLocation', updateLocation);
 
 mongoose.connection.on('connected', function () {  
   console.log('Mongoose default connection opened');

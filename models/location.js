@@ -12,7 +12,8 @@ var locationSchema = new Schema({
       body: String, 
       date: Date 
     }
-  ]
+  ],
+  keywords: [{type: String}]
 });
 
 module.exports = mongoose.model('Location', locationSchema);

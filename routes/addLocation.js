@@ -17,6 +17,7 @@ router.post('/', function(req, res){
     location.address = req.body.address;
     location.summary = req.body.summary;
     location.notes = [];
+    location.keywords = [];
     console.log(location);
 
     saveLocation(location);

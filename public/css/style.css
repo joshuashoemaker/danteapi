@@ -21,6 +21,10 @@ body{
     display: inline;
 }
 
+.text-italics{
+    font-style: italic;
+}
+
 .enter-panel-wrapper{
     margin: 20px 0px 20px 0px;
     padding: 10px;
@@ -43,4 +47,27 @@ body{
 
 .find-add-edit-wrapper{
     margin-top: 15px;
+}
+
+.search-results{
+    min-height: 480px;
+    max-height: 480px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.search-result{
+    cursor: pointer;
+}
+
+.search-result:hover{
+    background-color: rgb(250, 250, 250);
+}
+
+.edit-location-form-wrapper{
+    margin-top: 6px;
+}
+
+.edit-location-basic{
+    padding: 3px;
 }
