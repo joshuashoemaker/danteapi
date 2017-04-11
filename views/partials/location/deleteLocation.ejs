@@ -1,0 +1,14 @@
+<div class=""  data-bind="with: locationsPanel">
+    <div class="delete-location-form">
+        <div class="card-header">
+            <h3 class="card-title">Delete Entry</h3>
+            <p>Are you sure you would like to delete this location?</p>
+        </div>
+        <div class="card-body">
+            <h4 data-bind="text: selectedLocation.name"></h4>
+            <p class="text-italics" data-bind="text: selectedLocation.address"></p>
+            <p data-bind="text: selectedLocation.summary"></p>
+            <button data-bind="click: function(data, event) { deleteLocation(selectedLocation, data, event) }" class="btn btn-danger">Delete Entry</button>
+        </div>
+    </div>
+</div>

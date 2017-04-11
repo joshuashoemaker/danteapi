@@ -17,6 +17,10 @@ body{
     color: rgba(0, 0, 0, 0.38)
 }
 
+.card-body{
+    padding: 10px;
+}
+
 .text-inline{
     display: inline;
 }

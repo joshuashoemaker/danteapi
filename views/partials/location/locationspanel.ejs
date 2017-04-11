@@ -69,6 +69,10 @@
         <!-- ko if: locationsPanel.formWindowSelected() === 'edit' -->
             <% include ./editlocationform %>
         <!-- /ko -->
+
+        <!-- ko if: locationsPanel.formWindowSelected() === 'delete' -->
+            <% include ./deleteLocation %>
+        <!-- /ko -->
     </div>
 
     </div>

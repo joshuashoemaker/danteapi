@@ -30,6 +30,22 @@ let VM = function(){
 let LocationsPanel = function(){
     let self = this;
 
+    //Helper Functions
+    function clearSelectedLocation(){
+        self.selectedLocation.name("");
+        self.selectedLocation.oldName("");
+        self.selectedLocation.address("");
+        self.selectedLocation.summary("");
+        console.log("Selection Cleared");
+    }
+    
+
+    function clearInput(){
+        self.addLocationForm.name("");
+        self.addLocationForm.address("");
+        self.addLocationForm.summary("");
+    }
+
 
     /*  This is a string value used to determine which form the
         view will show. It can either be the add new or edit current.
@@ -206,12 +222,6 @@ let LocationsPanel = function(){
                     //We do not remove the values of the input fields.
                 });
             }
-            
-            function clearInput(){
-                self.addLocationForm.name("");
-                self.addLocationForm.address("");
-                self.addLocationForm.summary("");
-            }
         }
     };
 
@@ -259,6 +269,28 @@ let LocationsPanel = function(){
         }
     };
 
+    /*  This Function deletes the currently selected location and then 
+        removes the values of the selectedLocation observable   */
+    this.deleteLocation = function(data){
+
+        if(!data){
+            return false;
+        }
+
+        let location = data;
+
+        let promise = deleteLocation(data);
+
+        promise.done(function(response){
+            clearSelectedLocation();
+            getLocations(self.searchValue());
+        })
+        .fail(function(response){
+            console.log(response);
+        });
+
+    };
+
 
     this.searchQueryEntered = function(value, event){
         self.filter(self.searchValue());
@@ -304,6 +336,7 @@ let LocationsPanel = function(){
         //Filter location markers. Function found in map.js
         self.filteredLocations(foundLocations);
     };
+
 }
 
 
@@ -330,6 +363,16 @@ function addLocation(location){
 function updateLocation(location){
     return $.ajax({
         url: '/updateLocation',
+        type: 'POST',
+        dataType: 'json',
+        data: location
+    });
+}
+
+
+function deleteLocation(location){
+    return $.ajax({
+        url: '/deleteLocation',
         type: 'POST',
         dataType: 'json',
         data: location
