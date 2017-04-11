@@ -9,8 +9,8 @@ var locationSchema = new Schema({
   summary:   String,
   notes: [
     { 
-      body: String, 
-      date: Date 
+      body: String,
+      link: String
     }
   ],
   keywords: [{type: String}]
