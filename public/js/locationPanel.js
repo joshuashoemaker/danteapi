@@ -1,4 +1,4 @@
-/*  This is thr controller for the locations pannel interface. 
+/*  This is the controller for the locations pannel interface. 
     It contains froms, buttons, and a search feature.   */
 let LocationsPanel = function(){
     let self = this;
@@ -21,6 +21,17 @@ let LocationsPanel = function(){
 
     function clearAddNote(){
         self.selectedLocation.selectedNote("");
+    }
+
+
+    function removeNote(note){
+        let notes = self.selectedLocation.notes();
+
+        let noteIndex = notes.indexOf(note);
+
+        let newNotes = notes.splice(noteIndex, 1);
+
+        return newNotes;
     }
 
 
@@ -84,9 +95,7 @@ let LocationsPanel = function(){
         self.selectedLocation.summary(foundLocation.summary || "");
         self.selectedLocation.address(foundLocation.address || "");
         self.selectedLocation.notes(foundLocation.notes);
-        self.selectLocation.selectedNote("");
-
-        console.log(self.selectedLocation.notes());
+        self.selectedLocation.selectedNote("");
     }
 
 
@@ -312,11 +321,35 @@ let LocationsPanel = function(){
             console.log(response);
             clearAddNote();
             getLocations(self.searchValue());
+            self.selectLocation(self.selectedLocation.name());
         })
         .fail(function(response){
             console.log("There was a problem sending your note.");
         });
         
+    }
+
+
+    this.deleteNoteAndUpdate = function(note){
+
+        let newNotes = removeNote(note);
+
+        let location = {
+            name: self.selectedLocation.name(),
+            notes: newNotes
+        }
+
+        let promise = updateLocationNotes(location);
+
+        promise.done(function(response){
+            console.log(response);
+            clearAddNote();
+            getLocations(self.searchValue());
+            self.selectLocation(self.selectedLocation.name());
+        })
+        .fail(function(response){
+            console.log("There was a problem sending your note.");
+        });
     }
 
 

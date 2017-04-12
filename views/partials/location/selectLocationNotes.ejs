@@ -1,7 +1,7 @@
-<div class="card card-outline-primary mb-3 search-result" 
+<div class="card card-outline-primary mb-3 select-note" 
     data-bind="click: locationsPanel.selectLocationNote.bind($data)">
   <div class="card-block">
       <p data-bind="text: $data"></p>
-      <div><a href="#" class="material-icons">delete</a>Delete</div>
+      <div data-bind="click: locationsPanel.deleteNoteAndUpdate.bind($data)" class="text-inline"><a href="#" class="material-icons">delete</a>Delete</div>
   </div>
 </div>
