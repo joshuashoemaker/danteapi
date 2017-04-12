@@ -13,10 +13,14 @@ let LocationsPanel = function(){
     }
     
 
-    function clearInput(){
+    function clearInputAddLocation(){
         self.addLocationForm.name("");
         self.addLocationForm.address("");
         self.addLocationForm.summary("");
+    }
+
+    function clearAddNote(){
+        self.selectedLocation.selectedNote("");
     }
 
 
@@ -56,7 +60,9 @@ let LocationsPanel = function(){
         name: ko.observable(""),
         address: ko.observable(""),
         summary: ko.observable(""),
-        oldName: ko.observable("")
+        oldName: ko.observable(""),
+        notes: ko.observableArray(),
+        selectedNote: ko.observable("")
     }
 
 
@@ -74,6 +80,16 @@ let LocationsPanel = function(){
         self.selectedLocation.oldName(foundLocation.name)
         self.selectedLocation.summary(foundLocation.summary || "");
         self.selectedLocation.address(foundLocation.address || "");
+        self.selectedLocation.notes(foundLocation.notes);
+
+        console.log(self.selectedLocation.notes());
+    }
+
+
+    this.selectLocationNote = function(note){
+
+        self.selectedLocation.selectedNote(note);
+        console.log(self.selectedLocation.selectedNote());
     }
 
 
@@ -181,7 +197,7 @@ let LocationsPanel = function(){
                     self.changeFormResponse(response.message);
 
                     //Clear input feailds if it was successfull
-                    clearInput();
+                    clearInputAddLocation();
                     
                     self.locations.push(location);
                     self.filter(self.searchValue());
@@ -242,6 +258,7 @@ let LocationsPanel = function(){
         }
     };
 
+
     /*  This Function deletes the currently selected location and then 
         removes the values of the selectedLocation observable   */
     this.deleteLocation = function(data){
@@ -263,6 +280,35 @@ let LocationsPanel = function(){
         });
 
     };
+
+
+    this.submitLocationNotes = function(data){
+
+        let locationName = self.selectedLocation.name();
+        let locationNotes = self.selectedLocation.notes();
+        let newNote = self.selectedLocation.selectedNote();
+
+        locationNotes.push(newNote);
+
+        let location = {
+            name: locationName,
+            notes: locationNotes
+        };
+
+        console.log(location);
+        
+        let promise = updateLocationNotes(location);
+
+        promise.done(function(response){
+            console.log(response);
+            clearAddNote();
+            getLocations(self.searchValue());
+        })
+        .fail(function(response){
+            console.log("There was a problem sending your note.");
+        });
+        
+    }
 
 
     this.searchQueryEntered = function(value, event){

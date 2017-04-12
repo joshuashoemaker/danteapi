@@ -1,0 +1,17 @@
+<form class="form-group edit-location-notes" data-bind="with: locationsPanel, submit: locationsPanel.submitLocationNotes">
+    <input name="name" type="hidden" value="" data-bind="value: selectedLocation.name">
+    <label for="add-entry-note">New Note</label>
+    <textarea name="note" data-bind="value: selectedLocation.selectedNote" 
+        type="text" class="form-control" id="add-entry-note" 
+        aria-describedby="noteHelp" required rows="6"></textarea>
+
+    <small id="noteHelp" class="form-text text-muted">
+        Enter the new note you would like to submit.
+    </small>
+    <br>
+    <button class="form-control btn btn-success" aria-describedby="submitHelp">Sumbit Note</button>
+</form>
+
+<div class="edit-notes-list-wrapper" data-bind="foreach: locationsPanel.selectedLocation.notes">
+    <% include ./selectLocationNotes.ejs %>
+</div>

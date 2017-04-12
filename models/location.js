@@ -7,13 +7,8 @@ var locationSchema = new Schema({
   name:  String,
   address: String,
   summary:   String,
-  notes: [
-    { 
-      body: String,
-      link: String
-    }
-  ],
-  keywords: [{type: String}]
+  notes: [String],
+  keywords: [String]
 });
 
 module.exports = mongoose.model('Location', locationSchema);

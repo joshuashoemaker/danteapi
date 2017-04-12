@@ -64,6 +64,16 @@ function deleteLocation(location){
 }
 
 
+function updateLocationNotes(location){
+    return $.ajax({
+        url: '/updateLocationNotes',
+        type: 'POST',
+        dataType: 'json',
+        data: location
+    });
+}
+
+
 //We call to our API to get all saved locations. Returns a Promise.
 function getAllLocations(){
     return $.ajax({
@@ -82,7 +92,8 @@ function parseRetrievedLocations(locations){
         let newLocation = {
             name : location.name,
             summary : location.summary,
-            address : location.address
+            address : location.address,
+            notes : location.notes || []
         };
         locationArray.push(newLocation);
     }, this);

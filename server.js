@@ -22,6 +22,7 @@ const addLocation = require('./routes/addLocation');
 const getLocation = require('./routes/getLocation');
 const updateLocation = require('./routes/updateLocation');
 const deleteLocation = require('./routes/deleteLocation');
+const updateLocationNotes = require('./routes/updateLocationNotes');
 
 app.get('/', (req, res) =>{
     res.render('pages/index');
@@ -31,6 +32,7 @@ app.use('/addLocation', addLocation);
 app.use('/getLocation', getLocation);
 app.use('/updateLocation', updateLocation);
 app.use('/deleteLocation', deleteLocation);
+app.use('/updateLocationNotes', updateLocationNotes);
 
 mongoose.connection.on('connected', function () {  
   console.log('Mongoose default connection opened');
