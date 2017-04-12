@@ -24,6 +24,9 @@ let LocationsPanel = function(){
     }
 
 
+    this.locationInfoWindowSelected = ko.observable('summary');
+
+
     /*  This is a string value used to determine which form the
         view will show. It can either be the add new or edit current.
         The edit form is pre-populated by the data of the selected 
@@ -81,6 +84,7 @@ let LocationsPanel = function(){
         self.selectedLocation.summary(foundLocation.summary || "");
         self.selectedLocation.address(foundLocation.address || "");
         self.selectedLocation.notes(foundLocation.notes);
+        self.selectLocation.selectedNote("");
 
         console.log(self.selectedLocation.notes());
     }
@@ -89,7 +93,6 @@ let LocationsPanel = function(){
     this.selectLocationNote = function(note){
 
         self.selectedLocation.selectedNote(note);
-        console.log(self.selectedLocation.selectedNote());
     }
 
 
@@ -139,6 +142,12 @@ let LocationsPanel = function(){
         formWindowSelected() to decide which form to show.*/
     this.formWindowChange = function(windowName){
         self.formWindowSelected(windowName);
+    };
+
+
+    
+    this.selectLocationInfoWindow = function(windowName){
+        self.locationInfoWindowSelected(windowName);
     };
 
 
