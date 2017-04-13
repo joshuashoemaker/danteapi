@@ -75,6 +75,14 @@ let LocationsPanel = function(){
     }
 
 
+    function refreshLocations(data){
+         let locations = (parseRetrievedLocations(data));
+
+        //Now we assigned the newly parsed json to our observable
+        self.locations(locations);
+    }
+
+
     this.locationInfoWindowSelected = ko.observable('summary');
 
 
@@ -352,16 +360,18 @@ let LocationsPanel = function(){
             name: locationName,
             notes: locationNotes
         };
-
-        console.log(location);
         
         let promise = updateLocationNotes(location);
 
         promise.done(function(response){
-            console.log(response);
             clearAddNote();
-            getLocations(self.searchValue());
-            self.selectLocation(self.selectedLocation.name());
+
+            getAllLocations().done(function(response){
+
+                refreshLocations(response);
+                self.selectLocation(self.selectedLocation.name());
+                filterLocations(self.searchValue() || "");
+            });
         })
         .fail(function(response){
             console.log("There was a problem sending your note.");
@@ -374,8 +384,6 @@ let LocationsPanel = function(){
 
         let newNotes = removeNote(note);
 
-        //console.log(newNotes);
-
         let location = {
             name: self.selectedLocation.name(),
             notes: newNotes
@@ -385,8 +393,14 @@ let LocationsPanel = function(){
 
         promise.done(function(response){
             console.log(response);
-            getLocations(self.searchValue());
-            self.selectLocation(self.selectedLocation.name());
+
+            getAllLocations().done(function(response){
+
+                refreshLocations(response);
+                self.selectLocation(self.selectedLocation.name());
+                filterLocations(self.searchValue() || "");
+
+            });
         })
         .fail(function(response){
             console.log("There was a problem sending your note.");
