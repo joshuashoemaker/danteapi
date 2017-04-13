@@ -27,11 +27,51 @@ let LocationsPanel = function(){
     function removeNote(note){
         let notes = self.selectedLocation.notes();
 
-        let noteIndex = notes.indexOf(note);
-
-        let newNotes = notes.splice(noteIndex, 1);
+        let newNotes = notes.filter(function(text){
+            return text != note;
+        });
 
         return newNotes;
+    }
+
+
+    function filterLocations(value){
+        //Create a pattern from the value passed in to test() while searching
+        let patt = RegExp(value);
+        
+        //reference to locations
+        let locations = self.locations();
+
+        let foundLocations = [];
+
+        //If we are filtering by keyword. 
+        if(value){
+            if(value.charAt(0) === '#'){
+                let splitKey = value.split('#')
+                let keyword = splitKey[1].toLowerCase();
+
+                locations.forEach(function(loc) {
+                    if(loc.keywords.includes(keyword)){
+                        foundLocations.push(loc);
+                    }
+                }, this);
+            }
+            //Search by name if no using keyword search
+            else if(value.charAt(0) != '#'){
+                locations.forEach(function(loc) {
+                    if(patt.test(loc.name)){
+                        foundLocations.push(loc);
+                    }
+                }, this);
+            }
+        }
+        //default foundLocations[] to entire locationsList[] if all cases fail
+        else{
+            foundLocations = locations;
+        }
+
+        //Filter location markers. Function found in map.js
+        self.filteredLocations(foundLocations);
     }
 
 
@@ -130,7 +170,7 @@ let LocationsPanel = function(){
             /*  If this function -getLocations is called at the initialization
                 of the app then we need to assign the filteredLocations() to be
                 all of the locations retrieved from the api.    */
-            self.filter(filter || "");
+            filterLocations(filter || "");
         })
         .fail(function(data){
             console.log("Failure in AJAX call for getAllLocations");
@@ -218,7 +258,7 @@ let LocationsPanel = function(){
                     clearInputAddLocation();
                     
                     self.locations.push(location);
-                    self.filter(self.searchValue());
+                    filterLocations(self.searchValue());
                     self.selectLocation(location.name);
                 })
                 .fail(function(response){
@@ -334,6 +374,8 @@ let LocationsPanel = function(){
 
         let newNotes = removeNote(note);
 
+        //console.log(newNotes);
+
         let location = {
             name: self.selectedLocation.name(),
             notes: newNotes
@@ -343,7 +385,6 @@ let LocationsPanel = function(){
 
         promise.done(function(response){
             console.log(response);
-            clearAddNote();
             getLocations(self.searchValue());
             self.selectLocation(self.selectedLocation.name());
         })
@@ -353,49 +394,15 @@ let LocationsPanel = function(){
     }
 
 
+    /*---------------------------------------------------------------
+    -----------------------Search Locations------------------------*/
+
     this.searchQueryEntered = function(value, event){
-        self.filter(self.searchValue());
+        filterLocations(self.searchValue());
         return true;
     };
 
 
-    this.filter = function(value){
-        //Create a pattern from the value passed in to test() while searching
-        let patt = RegExp(value);
-        
-        //reference to locations
-        let locations = self.locations();
-
-        let foundLocations = [];
-
-        //If we are filtering by keyword. 
-        if(value){
-            if(value.charAt(0) === '#'){
-                let splitKey = value.split('#')
-                let keyword = splitKey[1].toLowerCase();
-
-                locations.forEach(function(loc) {
-                    if(loc.keywords.includes(keyword)){
-                        foundLocations.push(loc);
-                    }
-                }, this);
-            }
-            //Search by name if no using keyword search
-            else if(value.charAt(0) != '#'){
-                locations.forEach(function(loc) {
-                    if(patt.test(loc.name)){
-                        foundLocations.push(loc);
-                    }
-                }, this);
-            }
-        }
-        //default foundLocations[] to entire locationsList[] if all cases fail
-        else{
-            foundLocations = locations;
-        }
-
-        //Filter location markers. Function found in map.js
-        self.filteredLocations(foundLocations);
-    };
+   
 
 }
