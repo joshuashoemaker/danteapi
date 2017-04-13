@@ -15,14 +15,4 @@ Either run MongoDB locally and create a database name danteAPI, or create one on
 
 #To Do's
 
-There is an error with updating location notes. 
-
-###Example of adding a location note:
-
-If this is done with out refreshing the page in between form submitions:
-
-####Add 1
-####Add 2
-####Add 3
-
-After adding "Add 1", the list of notes will be updated. However when "Add 2" is added, the list does not update and it only shows "Add 1". If you then add "Add 3" the list will update to show "Add 1 Add 2". If you refresh the list, either by selecting th elocation or refreshing the page, you will see "Add1 Add 3".
+Add Images for location to Amazon S3
