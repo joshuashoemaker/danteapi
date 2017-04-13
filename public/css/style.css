@@ -1,20 +1,18 @@
 body{
-    padding-left: 30px;
-    padding-right: 30px;
+    color: #424733;
 }
 
 .jumbotron{
     background-color: #f5f5f5 !important;
-    color: black;
     box-shadow: 0px 0px #000;
 }
 
 .jumbotron h1{
-    color: rgba(0, 0, 0, 0.68)
+    color: black;
 }
 
 .jumbotron p{
-    color: rgba(0, 0, 0, 0.38)
+    color: #424733 !important;
 }
 
 
@@ -63,10 +61,11 @@ body{
 
 .search-result{
     cursor: pointer;
+    color: #424733 !important;
 }
 
 .search-result:hover{
-    background-color: rgb(250, 250, 250);
+    background-color: #FDF8DE;
 }
 
 .edit-location-form-wrapper{
@@ -85,9 +84,34 @@ body{
 
 .select-note{
     cursor: pointer;
-    padding: 0px;
+    color: #424733 !important;
 }
 
 .select-note:hover{
-    background-color: rgb(250, 250, 250);
+    background-color: #FDF8DE;
+}
+
+.parchment-background{
+    background-color: #FDF8DE;
+    color: #424733 !important;
+}
+
+.btn-white{
+    background-color: #FFFFFF;
+    color: #424733;
+}
+
+.btn-black{
+    background-color: #424733;
+    color: #FFFFFF;
+}
+
+.btn-red{
+    background-color: #B00000 !important;
+    color: #FFFFFF !important;
+}
+
+.red-hover:hover{
+    background-color: #B00000 !important;
+    color: #FFFFFF !important;
 }

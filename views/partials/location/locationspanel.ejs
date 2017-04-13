@@ -4,16 +4,16 @@
         <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
-                    <a class="nav-link" 
+                    <a class="nav-link red-hover" 
                     data-bind="click: function(data, event) { locationsPanel.selectLocationInfoWindow('summary', data, event) }" 
                     href="#">Summary</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" 
+                    <a class="nav-link red-hover" 
                     data-bind="click: function(data, event) { locationsPanel.selectLocationInfoWindow('notes', data, event) }" 
                     href="#">Notes</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item red-hover">
                     <a class="nav-link" 
                     data-bind="click: function(data, event) { locationsPanel.selectLocationInfoWindow('images', data, event) }" 
                     href="#">Images</a>
@@ -46,16 +46,16 @@
     <div class="col-sm-6 entry-add">
         <div class="card">
             <div class="card-header">
-                <ul class="nav nav-tabs card-header-tabs">
-                    <li class="nav-item">
+                <ul class="nav nav-tabs card-header-tabs ">
+                    <li class="nav-item red-hover">
                         <a class="nav-link" href="#" 
                         data-bind="click: function(data, event) { locationsPanel.formWindowChange('add', data, event) }">New</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item red-hover">
                         <a class="nav-link" href="#"
                         data-bind="click: function(data, event) { locationsPanel.formWindowChange('edit', data, event) }">Edit</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item red-hover">
                         <a class="nav-link" href="#"
                         data-bind="click: function(data, event) { locationsPanel.formWindowChange('delete', data, event) }">Delete</a>
                     </li>
