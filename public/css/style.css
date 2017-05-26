@@ -1,5 +1,6 @@
 body{
     color: #424733;
+    overflow-x: hidden;
 }
 
 .jumbotron{
@@ -113,4 +114,18 @@ body{
 .red-hover:hover{
     background-color: #B00000 !important;
     color: #FFFFFF !important;
+}
+
+.flash-message{
+    position: fixed;
+    height: 40px;
+    padding: 10px;
+    bottom: 0px;
+    width: 100%;
+    text-decoration: underline;
+    font-size: 18px;
+}
+
+.hidden-flash{
+    bottom: -40px;
 }
