@@ -1,8 +1,10 @@
-let VM = function(){
+VM = function(){
 
     let self = this;
 
+
     this.locationsPanel = new LocationsPanel();
+
 
     /*  From the index page file. When a user clicks on either of the 
         buttons to open the form panels to add and edit either locations,
@@ -21,16 +23,9 @@ let VM = function(){
     //For any input that relies on only key events
     this.preventForm = function(){
         return false;
-    };
+    }
 }
 
-
-
-let PersonsPanel= function(){
-    
-    let self = this;
-
-}
 
 
 //  We POST to our API to save a new location. Returns a Promise/
@@ -100,5 +95,5 @@ function parseRetrievedLocations(locations){
     return locationArray;
 }
 
-
 ko.applyBindings(VM());
+
