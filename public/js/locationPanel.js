@@ -1,5 +1,3 @@
-/*  This is the controller for the locations pannel interface. 
-    It contains froms, buttons, and a search feature.   */
 let LocationsPanel = function(){
     let self = this;
 
@@ -18,6 +16,7 @@ let LocationsPanel = function(){
         self.addLocationForm.address("");
         self.addLocationForm.summary("");
     }
+
 
     function clearAddNote(){
         self.selectedLocation.selectedNote("");
@@ -82,6 +81,8 @@ let LocationsPanel = function(){
         self.locations(locations);
     }
 
+    //-----------------End Helper Functions-------------------
+
 
     this.locationInfoWindowSelected = ko.observable('summary');
 
@@ -140,10 +141,15 @@ let LocationsPanel = function(){
 
         self.selectedLocation.name(foundLocation.name);
         self.selectedLocation.oldName(foundLocation.name)
-        self.selectedLocation.summary(foundLocation.summary || "");
+        self.selectedLocation.summary(replaceLineBreaks(foundLocation.summary) || "");
         self.selectedLocation.address(foundLocation.address || "");
         self.selectedLocation.notes(foundLocation.notes);
         self.selectedLocation.selectedNote("");
+
+        function replaceLineBreaks(body){
+            return body.replace("\n", "<br>");
+        }
+        
     }
 
 
@@ -154,6 +160,8 @@ let LocationsPanel = function(){
 
 
     this.searchValue = ko.observable();
+    
+    this.imageToUpload = ko.observable();
 
 
     /*  Here we make the call to our api to retrieve our locations
@@ -408,15 +416,15 @@ let LocationsPanel = function(){
     }
 
 
-    /*---------------------------------------------------------------
-    -----------------------Search Locations------------------------*/
+    this.uploadPicture = function(data){
+        let picture = self.imageToUpload();
+
+        console.log(picture);
+    }
+
 
     this.searchQueryEntered = function(value, event){
         filterLocations(self.searchValue());
         return true;
     };
-
-
-   
-
 }
