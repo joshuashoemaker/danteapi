@@ -11,6 +11,10 @@
                     <a class="nav-link" href="#"
                     data-bind="click: function(data, event) { locationsPanel.editInfoFormWindowChange('notes', data, event) }">notes</a>
                 </li>
+                <li class="nav-item red-hover">
+                    <a class="nav-link" href="#"
+                    data-bind="click: function(data, event) { locationsPanel.editInfoFormWindowChange('images', data, event) }">images</a>
+                </li>
             </ul>
         </div>
         <div class="">
@@ -21,6 +25,10 @@
 
                 <!-- ko if: locationsPanel.editInfoFormWindowSelected() === 'notes' -->
                     <% include ./editLocationFormNotes %>
+                <!-- /ko -->
+    
+                <!-- ko if: locationsPanel.editInfoFormWindowSelected() === 'images' -->
+                    <% include ./addLocationPictureForm %>
                 <!-- /ko -->
             </div>
         </div>
