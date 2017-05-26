@@ -1,0 +1,13 @@
+<form class="form-group add-location-picture" data-bind="with: locationsPanel, submit: locationsPanel.uploadPicture">
+
+
+    <label for="edit-entry-name">Entry Name</label>
+    <input name="image" data-bind="file: imageToUpload" type="file" class="form-control-file" id="location-upload-input" aria-describedby="nameHelp" required>
+    <small id="nameHelp" class="form-text text-muted">
+        Please don't be a jerk and upload something stupid.
+    </small>
+    <br>
+
+    <button class=" btn btn-success red-hover" aria-describedby="submitHelp">Upload</button>
+
+</form>
